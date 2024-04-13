@@ -82,6 +82,22 @@ useSeoMeta({
   twitterImage: post.value.image,
   ogImageUrl: post.value.image
 })
+
+useSchemaOrg([
+  defineArticle({
+    thumbnailUrl: post.value.image,
+    image: post.value.image,
+    wordCount: post.value.content?.length,
+
+    author: {
+      '@type': 'Person',
+      name: `${post.value.user.firstName} ${post.value.user.lastName}`,
+      image: post.value.user.avatar
+    },
+
+    datePublished: post.value.publishedAt
+  })
+])
 </script>
 
 <style lang="scss">
