@@ -39,6 +39,9 @@
   </div>
 
   <div class="container max-w-5xl py-12">
+    <!-- NOTE: here there is some images that is received from API with not alt -->
+    <!-- so you might find missing score in the SEO, Accessibility  -->
+    <!-- in real word, the alt content can be added from the admin panel while uploading the image  -->
     <div class="article-content" v-html="post?.content" />
 
     <link-btn to="/posts">Back To Posts</link-btn>

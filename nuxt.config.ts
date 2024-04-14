@@ -2,10 +2,11 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-    '@nuxtjs/tailwindcss',
-    '@nuxt/image',
     '@nuxt/fonts',
+    '@nuxt/image',
+    '@nuxt/test-utils/module',
     '@nuxtjs/seo',
+    '@nuxtjs/tailwindcss',
     '@vueuse/nuxt'
   ],
 
