@@ -1,18 +1,30 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/image', '@nuxt/fonts', '@nuxtjs/seo'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxt/image',
+    '@nuxt/fonts',
+    '@nuxtjs/seo',
+    '@vueuse/nuxt'
+  ],
 
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' }
+    pageTransition: { name: 'page' }
   },
 
   site: {
     url: 'https://da-blog-vue-school.netlify.app',
     name: 'Da Vue Blog',
     description: 'Welcome to my awesome Blog!',
-    defaultLocale: 'en' // not needed if you have @nuxtjs/i18n installed
+    defaultLocale: 'en'
   },
+
+  image: {
+    domains: ['picsum.photos']
+  },
+
+  css: ['~/assets/styles/main.scss'],
 
   nitro: {
     experimental: {

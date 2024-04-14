@@ -1,7 +1,6 @@
 <template>
   <div class="relative">
     <nuxt-img
-      lazy
       class="absolute inset-0 w-full h-full object-cover"
       alt="Post Image"
       :src="post?.image"
@@ -12,7 +11,9 @@
         <!-- post Title -->
         <h1 class="text-3xl font-bold text-slate-900">{{ post?.title }}</h1>
 
-        <h2 class="text-xl max-w-xl text-slate-800">{{ post?.excerpt }}</h2>
+        <h2 class="text-lg md:text-xl max-w-xl text-slate-800">
+          {{ post?.excerpt }}
+        </h2>
 
         <div class="flex gap-4">
           <div class="w-16 h-16">
@@ -29,7 +30,7 @@
             </div>
 
             <div class="text-slate-700">
-              {{ dayjs(post?.publishedAt).format('DD MMM YYYY') }}
+              {{ useFormattedDate(post!.publishedAt) }}
             </div>
           </div>
         </div>
@@ -40,23 +41,26 @@
   <div class="container max-w-5xl py-12">
     <div class="article-content" v-html="post?.content" />
 
-    <link-btn to="/posts">Back To Posts</link-btn>
+    <nuxt-link to="/posts">Back To Posts</nuxt-link>
   </div>
 </template>
 
 <script setup lang="ts">
-import dayjs from 'dayjs'
+import type { PostWithUser } from '~/types'
 const route = useRoute()
 
 // compute the slug
 const slug = computed(() => route.params.slug)
 
 // fetch post
-const { data: post } = await useFetch(`/api/posts/${slug.value}`, {
-  query: {
-    include: 'user'
+const { data: post } = await useFetch<PostWithUser>(
+  `/api/posts/${slug.value}`,
+  {
+    query: {
+      include: 'user'
+    }
   }
-})
+)
 
 // handle wrong slug
 // for more complex scenarios, we might use useAsyncData, and handle multiple error codes
