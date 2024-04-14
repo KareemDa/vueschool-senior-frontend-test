@@ -41,7 +41,7 @@
   <div class="container max-w-5xl py-12">
     <div class="article-content" v-html="post?.content" />
 
-    <nuxt-link to="/posts">Back To Posts</nuxt-link>
+    <link-btn to="/posts">Back To Posts</link-btn>
   </div>
 </template>
 

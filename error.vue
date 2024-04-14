@@ -7,16 +7,14 @@
       <h3 class="text-3xl mb-12">You've Found the Secret Page!</h3>
     </template>
 
-    <button @click="handleError">Clear errors</button>
+    <link-btn to="/posts">Back to Posts</link-btn>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { NuxtError } from '#app'
 
-const props = defineProps({
-  error: Object as () => NuxtError
-})
+defineProps({ error: Object as () => NuxtError })
 
 const handleError = () => clearError({ redirect: '/' })
 </script>
